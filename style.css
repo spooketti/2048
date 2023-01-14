@@ -1,0 +1,11 @@
+#board
+{
+    background-color: black;
+ display:grid;
+ grid-template-columns: 1fr 1fr 1fr 1fr;   
+}
+
+#board div
+{
+    background-color: white;
+}

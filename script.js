@@ -4,8 +4,7 @@ for(let i=0;i<4;i++)
     for(let j=0;j<4;j++)
     {
         let box = document.createElement("div")
-        board.append("box")
+        box.id = j.toString() + i.toString()
+        board.appendChild(box)
     }
 }
-
-const api_key = "AIzaSyDl0YaBbeeilHPz4n-39g34XQxsLLjDwsw"

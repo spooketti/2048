@@ -3,6 +3,8 @@
  background-color: black;
  display:grid;
  grid-template-columns: 1fr 1fr 1fr 1fr;   
+ height:90%;
+ width:10%
 }
 
 #board div

@@ -95,6 +95,63 @@ function generateTiles()
         matrix[randomY][randomX] = generables[Math.round(Math.random())]
     }
 }
+
+function moveUp()
+{
+
+}
+
+function moveRight()
+{
+ghost = [
+    [],
+    [],
+    [],
+    []
+]
+for(let x = 0;x<0;x++)
+{
+    for(let y = 0;y<0;y++)
+    {
+        //i don't want to work on this anymore
+        /*
+        our array
+        [
+            [0,0,0,0],
+            [0,0,2,2],
+            [0,0,2,2],
+            [2,2,0,0]
+        ]
+
+        filter it to look like
+        [],
+        [2,2],
+        [2,2],
+        [2,2]
+
+        then push 0's
+
+        [0,0,0,0]
+        [2,2,0,0]
+        [2,2,0,0]
+        [2,2,0,0]
+
+        (this method of course ignores the fact this should form 4's but it's ok that's comparitably easier than whatever bs this filter method uses)
+        
+        */
+    }  
+}
+}
+function moveDown()
+{
+
+}
+
+function moveLeft()
+{
+   
+}
+
 function initBoard()
 {
 generateTiles()
@@ -103,3 +160,24 @@ updateBoard()
 }
 
 initBoard()
+
+document.addEventListener("keydown", (e) =>
+{
+    //console.log(e.code)
+    switch(e.code)
+    {
+        case "ArrowLeft":
+            moveLeft()
+            break;
+        case "ArrowUp":
+            moveUP()
+            break;
+        case "ArrowDown":
+            moveLeft()
+            break;
+        case "ArrowRight":
+            moveRight()
+            break;
+    }
+
+})

@@ -63,6 +63,8 @@ let matrix =
     [0,0,0,0]
 ]
 
+let generables = [2,4]
+
 function updateBoard()
 {
  
@@ -85,20 +87,12 @@ function generateTiles()
 {
     let randomX = Math.round(Math.random() * 3)
     let randomY = Math.round(Math.random() * 3)
-    let twoOFour = Math.floor(Math.random() * 100)
     if(matrix[randomY][randomX] != 0)
     {
         generateTiles()
     }
     else{
-        if(twoOFour %2==0)
-    {
-        matrix[randomY][randomX] = 2
-    }
-    else
-    {
-        matrix[randomY][randomX] = 4
-    }
+        matrix[randomY][randomX] = generables[Math.round(Math.random())]
     }
 }
 function initBoard()

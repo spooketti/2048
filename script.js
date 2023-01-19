@@ -109,7 +109,40 @@ function generateTiles()
 
 function moveUp()
 {
+    let ghost = [
+    ]
+    let arr = []
+    let save
+    
+       
+       for(let i=0;i<4;i++)
+       {
+        save = (matrix.map(d => d[i])).filter(filterZero);
+        let rowLength = 4 - save.length
+        for(let i=0;i<rowLength;++i)
+        {
+            save.unshift(0)
+        }
+        arr.push(save)
+       }
 
+       function filterZero(num)
+       {
+        return num > 0
+       }
+
+       for(let i=3;i>=0;i--)
+       {
+        let bag = []
+        for(let j=0;j<4;j++)
+            {
+                bag.push(arr[j][i]) 
+            }
+            ghost.push(bag)
+       }
+
+       matrix = ghost
+       generateTiles()
 }
 
 function moveRight()
@@ -144,6 +177,42 @@ function moveRight()
 }
 function moveDown()
 {
+    let ghost = [
+    ]
+    let arr = []
+    let save
+    
+       
+       for(let i=0;i<4;i++)
+       {
+        save = (matrix.map(d => d[i])).filter(filterZero);
+        let rowLength = 4 - save.length
+        for(let i=0;i<rowLength;++i)
+        {
+            save.push(0)
+        }
+        arr.push(save)
+       }
+
+       function filterZero(num)
+       {
+        return num > 0
+       }
+
+       for(let i=3;i>=0;i--)
+       {
+        let bag = []
+        for(let j=0;j<4;j++)
+            {
+                bag.push(arr[j][i]) 
+            }
+            ghost.push(bag)
+       }
+
+       matrix = ghost
+       generateTiles()
+       //dont ask me how this works by the time you read this comment i have forgotten i made this project
+       //huge shout out to this guy though frfr https://www.youtube.com/watch?v=gOtw6A-kqF8
 
 }
 
@@ -198,9 +267,11 @@ document.addEventListener("keydown", (e) =>
             break;
         case "ArrowUp":
             moveUp()
+            updateBoard()
             break;
         case "ArrowDown":
             moveDown()
+            updateBoard()
             break;
         case "ArrowRight":
             moveRight()

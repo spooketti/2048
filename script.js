@@ -119,10 +119,35 @@ function moveUp()
        {
         save = (matrix.map(d => d[i])).filter(filterZero);
         let rowLength = 4 - save.length
+//        let ghoul = save
+        /*
+          let rowLength = 4 - arr[y].length
+        let ghoul = arr[y]
+        for(let i=0;i<rowLength;++i)
+        //22
+        //if arr[i] = arr[i+1]
+        {
+            if(ghoul[i] == ghoul[i+1])
+            {
+                ghoul[i+1] = ghoul[i+1] * 2
+                ghoul[i] = 0
+            }
+            arr[y].unshift(0)
+        }
+        arr[y] = ghoul
+    }
+        */
         for(let i=0;i<rowLength;++i)
         {
-            save.unshift(0)
+  //          if(ghoul[i] == ghoul[i+1])
+    //        {
+      //          ghoul[i+1] = ghoul[i+1] * 2
+        //        ghoul[i] = 0
+          //  }
+            save.unshift(0)//something is very wrong
         }
+        //save = ghoul
+        console.log(save)
         arr.push(save)
        }
 
@@ -166,12 +191,21 @@ function moveRight()
               
         }
         let rowLength = 4 - arr[y].length
+        let ghoul = arr[y]
         for(let i=0;i<rowLength;++i)
+        //22
+        //if arr[i] = arr[i+1]
         {
+            if(ghoul[i] == ghoul[i+1])
+            {
+                ghoul[i+1] = ghoul[i+1] * 2
+                ghoul[i] = 0
+            }
             arr[y].unshift(0)
         }
+        arr[y] = ghoul
     }
-    //console.log(arr)
+    
     matrix = arr
     generateTiles()
 }
@@ -218,39 +252,47 @@ function moveDown()
 
 function moveLeft()
 {
-    let arr = [
-        [],
-        [],
-        [],
-        []
-       ]
-    
-        for(y=0;y<4;y++)
+   let arr = [
+    [],
+    [],
+    [],
+    []
+   ]
+
+    for(y=0;y<4;y++)
+    {
+        for(x=0;x<4;x++)
         {
-            for(x=0;x<4;x++)
+            if(matrix[y][x] != 0)
             {
-                if(matrix[y][x] != 0)
-                {
-                    arr[y].push(matrix[y][x])
-                }
-                
-                  
+                arr[y].push(matrix[y][x])
             }
-            let rowLength = 4 - arr[y].length
-            for(let i=0;i<rowLength;++i)
-            {
-                arr[y].push(0)
-            }
+            
+              
         }
-        //console.log(arr)
-        matrix = arr
-        generateTiles()
+        let rowLength = 4 - arr[y].length
+        let ghoul = arr[y]
+        for(let i=0;i<rowLength;++i)
+        {
+            if(ghoul[i] == ghoul[i+1] && ghoul[i] != null)
+            {
+               ghoul[i] = ghoul[i] * 2
+               ghoul[i+1] = 0
+            }
+            ghoul.push(0)
+        }
+        arr[y] = ghoul
+       // console.log(ghoul)
+    }
+    
+    matrix = arr
+    generateTiles()
 }
 
 function initBoard()
 {
 generateTiles()
-generateTiles()
+generateTiles() 
 updateBoard()
 }
 

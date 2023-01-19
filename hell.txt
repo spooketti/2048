@@ -1,0 +1,5 @@
+there is currenlty an issue with upward and downward movement
+of the board
+left and right movement has been finished
+
+please kill me

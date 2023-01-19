@@ -1,10 +1,21 @@
+//LESSSON TO BE LEARNED!!!
+/*
+WHEN DOING FOR LOOP MATRIX
+
+IT'S 
+FOR(Y)
+FOR(X)
+
+MATRIX[Y][X]
+*/
+
 let board = document.getElementById("board")
 for(let i=0;i<4;i++)
 {
     for(let j=0;j<4;j++)
     {
         let box = document.createElement("div")
-        box.id = j.toString() + i.toString()
+        box.id = i.toString() + j.toString()
         board.appendChild(box)
     }
 }
@@ -69,14 +80,14 @@ function updateBoard()
 {
  
 
-for(let i=0;i<4;i++)
+for(let i=0;i<4;i++) //y
 {
     for(let j=0;j<4;j++)
     {
-        let box = document.getElementById(j.toString() + i.toString())
-        box.innerText = matrix[j][i].toString()
-        box.style.backgroundColor = colorSwitch(matrix[j][i])
-        if(matrix[j][i] == 0)
+        let box = document.getElementById(i.toString() + j.toString())
+        box.innerText = matrix[i][j].toString()
+        box.style.backgroundColor = colorSwitch(matrix[i][j])
+        if(matrix[i][j] == 0)
         {
             box.innerText = ""
         }
@@ -103,44 +114,33 @@ function moveUp()
 
 function moveRight()
 {
-ghost = [
+   let arr = [
     [],
     [],
     [],
     []
-]
-for(let x = 0;x<0;x++)
-{
-    for(let y = 0;y<0;y++)
+   ]
+
+    for(y=0;y<4;y++)
     {
-        //i don't want to work on this anymore
-        /*
-        our array
-        [
-            [0,0,0,0],
-            [0,0,2,2],
-            [0,0,2,2],
-            [2,2,0,0]
-        ]
-
-        filter it to look like
-        [],
-        [2,2],
-        [2,2],
-        [2,2]
-
-        then push 0's
-
-        [0,0,0,0]
-        [2,2,0,0]
-        [2,2,0,0]
-        [2,2,0,0]
-
-        (this method of course ignores the fact this should form 4's but it's ok that's comparitably easier than whatever bs this filter method uses)
-        
-        */
-    }  
-}
+        for(x=0;x<4;x++)
+        {
+            if(matrix[y][x] != 0)
+            {
+                arr[y].push(matrix[y][x])
+            }
+            
+              
+        }
+        let rowLength = 4 - arr[y].length
+        for(let i=0;i<rowLength;++i)
+        {
+            arr[y].unshift(0)
+        }
+    }
+    //console.log(arr)
+    matrix = arr
+    generateTiles()
 }
 function moveDown()
 {
@@ -149,7 +149,33 @@ function moveDown()
 
 function moveLeft()
 {
-   
+    let arr = [
+        [],
+        [],
+        [],
+        []
+       ]
+    
+        for(y=0;y<4;y++)
+        {
+            for(x=0;x<4;x++)
+            {
+                if(matrix[y][x] != 0)
+                {
+                    arr[y].push(matrix[y][x])
+                }
+                
+                  
+            }
+            let rowLength = 4 - arr[y].length
+            for(let i=0;i<rowLength;++i)
+            {
+                arr[y].push(0)
+            }
+        }
+        //console.log(arr)
+        matrix = arr
+        generateTiles()
 }
 
 function initBoard()
@@ -168,15 +194,17 @@ document.addEventListener("keydown", (e) =>
     {
         case "ArrowLeft":
             moveLeft()
+            updateBoard()
             break;
         case "ArrowUp":
-            moveUP()
+            moveUp()
             break;
         case "ArrowDown":
-            moveLeft()
+            moveDown()
             break;
         case "ArrowRight":
             moveRight()
+            updateBoard()
             break;
     }
 
